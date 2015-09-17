@@ -1,0 +1,183 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>MyApp Rubí</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+</head> 
+<body>
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+      var app= angular.module('intellisense',[]);
+      app.controller('UsersController',function($scope,$http){
+      $scope.items={};
+         $http.get('http://www.empowerlabs.com/intellibanks/data/Sandbox/LecturaTXT.php').success(function(data){
+            $scope.items=data;
+         });
+      });
+      function cambiarFoto(img,id){ 
+         document.condicion.Obj.value = id;
+      }  
+</script>
+
+<div data-role="page" id="Menu">
+	<div data-role="header">
+		<h1>Menú</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#Registro de Productos">Registro de Producto</a></li>
+            <li><a href="#Formulario">Formulario</a></li>
+			<li><a href="#Base de Datos">Base de Datos</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+<div data-role="page" id="Registro de Productos">
+	<div data-role="header">
+		<h1>Registro de Productos</h1>
+	</div>
+	<div data-role="content">	
+    <label>Producto:</label>
+		<select name="Product" size="1">
+		  <option>Elige Producto</option>
+		  <option>Refrescos</option>
+		  <option>Sabritas</option>
+		  <option>Galletas</option>
+		  <option>Dulces</option>
+		  <option>Abarrotes</option>
+		</select>
+    <label>Descripcion:</label>
+        <input name="Description:" type="text" value="">
+    <label>Codigo:</label>
+        <input name="Code:" type="text" value="">
+    <label>Fecha:</label>
+        <input name="Date:" type="text" value="">
+    <label>Stock:</label>
+        <input name="Stock:" type="text" value="">
+    <label>Contenido:</label>
+        <input name="Content:" type="text" value="">
+    <label>Precio:</label>
+        <input name="Price:" type="text" value="">
+       
+        <input name="Enviar" type="submit" value="Enviar">
+  </div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+<div data-role="page" id="Formulario">
+	<div data-role="header">
+		<h1>Formulario</h1>
+	</div>
+	<div data-role="content">	
+		Contenido	
+        <table width="584" height="369" border="1">
+  <tr>
+    <td width="94">Name:</td>
+    <td width="51">Type:</td>
+    <td width="40">Size:</td>
+    <td width="298">Values:</td>
+    <td width="67">Tooltip Message: </td>
+  </tr>
+  <tr>
+    <td>Producto</td>
+    <td>Select</td>
+    <td>1</td>
+    <td>Refresco, Sabritas, Dulces, Galletas, Abarrotes </td>
+    <td>H</td>
+  </tr>
+  <tr>
+    <td> Descripcion </td>
+    <td>Text</td>
+    <td>40</td>
+    <td>&nbsp;</td>
+    <td>H</td>
+  </tr>
+  <tr>                                 
+    <td>Codigo</td>
+    <td>Text</td>
+    <td>30</td>
+    <td>&nbsp;</td>
+    <td>H</td>
+  </tr>
+  <tr>
+    <td>Fecha</td>
+    <td>Text</td>
+    <td>20</td>
+    <td>&nbsp;</td>
+    <td>H</td>
+  </tr>
+  <tr>
+    <td>Stock</td>
+    <td>Text</td>
+    <td>10</td>
+    <td>&nbsp;</td>
+    <td>H</td>
+  </tr>
+  <tr>
+    <td>Contenido</td>
+    <td>Text</td>
+    <td>20</td>
+    <td>&nbsp;</td>
+    <td>H</td>
+  </tr>
+  <tr>
+    <td>Precio</td>
+    <td>Text</td>
+    <td>20</td>
+    <td>&nbsp;</td>
+    <td>H</td>
+  </tr>
+</table>
+        	
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
+<div data-role="page" id="Base de Datos">
+	<div data-role="header">
+		<h1>Base de Datos</h1>
+	</div>
+	<div data-role="content">
+        <div ng-app="intellisense">
+             <div  style="height=10px; overflow: scroll;" ng-controller="UsersController">      	
+		<table data-role="table" class="ui-responsive" border="1">
+  <thead  >
+    <td width="134">Producto</td>
+    <td width="186">Descripcion:</td>
+    <td width="129">Codigo:</td>
+    <td width="109">Fecha:</td>
+    <td width="81">Stock:</td>
+    <td width="101">Contenido:</td>
+    <td width="68">Precio:</td>
+  </thead > 
+   <tbody ng-repeat="item in items">
+   <td> {{item.Product}} </td>
+  <td> {{item.Description}} </td>
+   <td> {{item.Code}}</td>
+  <td> {{item.Date}}</td>
+  <td> {{item.Stock}}</td>
+  <td> {{item.Content}}</td>
+  <td> {{item.Price}}</td>
+  </tbody>
+</table>		
+       </div>
+            </div> 
+	</div>
+	<div data-role="footer">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+</body>
+</html>
+

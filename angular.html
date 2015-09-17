@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+      var app= angular.module('intellisense',[]);
+      app.controller('UsersController',function($scope,$http){
+      $scope.items={};
+         $http.get('http://www.empowerlabs.com/intellibanks/data/Sandbox/LecturaTXT.php').success(function(data){
+            $scope.items=data;
+         });
+      });
+      function cambiarFoto(img,id){ 
+         document.condicion.Obj.value = id;
+      }  
+</script>
+
+            
+            <div ng-app="intellisense">
+             <div  style="height=10px; overflow: scroll;" ng-controller="UsersController">
+                 <table > 
+                     <thead > 
+                        <td > Producto </td>
+
+                         <td> Descripcion </td>
+
+                         <td> Codigo </td>
+
+                         <td> Fecha </td>
+
+                         <td> Stock </td>
+
+                         <td> Contenido </td>
+
+                         <td> Precio </td>
+                     </thead> 
+                     <tbody ng-repeat="item in items"> 
+                         <td> {{item.Product}} </td>
+                         <td> {{item.Description}} </td>
+                         <td> {{item.Code}}</td>
+                         <td> {{item.Date}}</td>
+                         <td> {{item.Stock}}</td>
+                         <td> {{item.Content}}</td>
+                         <td> {{item.Price}}</td>
+                        
+                     </tbody>
+                 </table>
+       
+
+            </div>
+            </div>
+    </body>
+</html>
